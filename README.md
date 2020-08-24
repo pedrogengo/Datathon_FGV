@@ -8,11 +8,13 @@ Tínhamos como objetivo realizar uma análise, de tema livre, sobre o universo d
 Iniciamos nossa análise pela obtenção da base de dados. Consultamos vários datasets públicos, mas alguns apresentavam inconsistência e outro, muitas vezes, não eram de alta frequência. No entanto, na nossa busca, encontramos uma base muito bem estruturada no [Kaggle](https://www.kaggle.com/jorijnsmit/binance-full-history). Tal coleção traz uma série de bases, minuto a minuto, de pares de criptomoedas. Além disso, o fato de estar na estrutura *parquet* a torna mais leve de se trabalhar.
 <br>
 Com a base em mãos, consultamos o site [Coin Market Cap](https://coinmarketcap.com/pt-br/) para selecionar com quais moedas iriamos fazer as análises, com base na capitalização de mercado das moedas. Escolhemos então as seguintes moedas:
+
 - Ethereum
 - Bitcoin
 - Ripple
 - Iota
 - Litecoin
+
 Decidimos também que gostaríamos de olhar as moedas com seus valores baseado em dólar e em bitcoin, para realizar uma análise de como as escolha do par influencia na predição.
 <br>
 Em relação a modelagem, decidimos por utilizar desde modelos mais simples até alguns mais complexos, para entender como essas criptomoedas se comportam em cada uma deles e tentar explicar os motivos de termos tido bons ou maus resultados. Os modelos que escolhemos para avaliar foram:
@@ -47,3 +49,26 @@ Para avaliar nossos modelos, utilizamos como métrica de avaliação a raiz da s
 </p>
 <br>
 <br>
+
+### Resultados
+
+### Webapp
+Desenvolvemos também um webapp para que você possa realizar alguns testes com sua própria base.
+
+<p align="center">
+  <img src="imgs/webapp_streamlit.png" />
+</p>
+
+Para rodá-lo localmente você deve seguir os seguintes passos (seu desenvolvimento foi utilizando python 3.7):
+
+1. Baixar as dependências do projeto:
+<pre>
+pip install -r streamlit/requirements.txt
+</pre>
+
+2. Executar o app (assumindo que você no mesmo diretório do README.md):
+<pre>
+streamlit run streamlit/st_app.py
+</pre>
+
+3. Acessar o endereço local que irá aparecer no seu terminal.
