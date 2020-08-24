@@ -39,4 +39,7 @@ Um importante ponto na hora de criar um conjunto de teste para séries temporais
 ### Métricas de avaliação
 Para avaliar nossos modelos, utilizamos como métrica de avaliação a raiz da soma dos erros quadrados, também conhecido como RMSE (*Root Mean Squared Error*). Sua fórmula é dada por:
 <br>
-![equation](https://latex.codecogs.com/gif.latex?RMSE%20%3D%20%5Csqrt%7B%5Cfrac%7B%5Csum_%7Bi%3D1%7D%5E%7BN%7D%20%28%5Chat%7By%7D_t%20-%20y_t%29%5E2%7D%7BN%7D%7D)
+<br>
+->![equation](https://latex.codecogs.com/gif.latex?RMSE%20%3D%20%5Csqrt%7B%5Cfrac%7B%5Csum_%7Bi%3D1%7D%5E%7BN%7D%20%28%5Chat%7By%7D_t%20-%20y_t%29%5E2%7D%7BN%7D%7D)<-
+<br>
+<br>
