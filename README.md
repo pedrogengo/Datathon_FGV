@@ -56,7 +56,7 @@ Para avaliar nossos modelos, utilizamos como métrica de avaliação a raiz da s
 Desenvolvemos também um webapp para que você possa realizar alguns testes com sua própria base.
 
 <p align="center">
-  <img src="imgs/webapp_streamlit.png" />
+  <img src="imgs/webapp_streamlit.PNG" />
 </p>
 
 Para rodá-lo localmente você deve seguir os seguintes passos (seu desenvolvimento foi utilizando python 3.7):
