@@ -13,3 +13,30 @@ Com a base em mãos, consultamos o site [Coin Market Cap](https://coinmarketcap.
 - Ripple
 - Iota
 - Litecoin
+Decidimos também que gostaríamos de olhar as moedas com seus valores baseado em dólar e em bitcoin, para realizar uma análise de como as escolha do par influencia na predição.
+<br>
+Em relação a modelagem, decidimos por utilizar desde modelos mais simples até alguns mais complexos, para entender como essas criptomoedas se comportam em cada uma deles e tentar explicar os motivos de termos tido bons ou maus resultados. Os modelos que escolhemos para avaliar foram:
+- Support Vector Machines for Regression (SVR)
+- Moving Average
+- Linear Regression
+- Linear Regression with penalties (Ridge and Lasso)
+- Multi Layer Preceptron (MLP)
+- Recurrent Neural Networks with LSTM blocks
+- XGBoost
+A ideia de trazer essa análise veio da leitura do artigo [Statistical and Machine Learning forecasting methods: Concerns and ways forward] e resolvemos agregar a questão da explicabilidade, pois sabemos que mais importante do que bons resultados, é entender a forma como nosso modelo realiza suas predições, a fim de encontrar bons insights, garantir a qualidade do processo e até mesmo refiná-lo.
+
+### Validação dos modelos
+Vamos dividir esse tópico em duas partes:
+- [Conjunto de teste](#conjunto_teste)
+- [Predição](#predicao)
+
+#### <a name="conjunto_teste"></a>Conjunto de teste
+Um importante ponto na hora de criar um conjunto de teste para séries temporais é garantir que você realize a predição usando valores isolados no tempo, ou seja, treino no passado e realize predições no futuro.
+É muito importante que, dada a sazonalidade de uma séria temporal, seja respeitado o limite temporal de tal sazonalidade para realizar a divisão de treino e teste, para que o modelo utilizado, caso consiga, aprenda essa a sazonalidade de série. Quando quebramos tal padrão na hora de dividir nossa base podemos fazer com que o modelo não aprenda isso, ocasionando possíveis erros.
+
+#### <a name="predicao"></a>Predição
+
+### Métricas de avaliação
+Para avaliar nossos modelos, utilizamos como métrica de avaliação a raiz da soma dos erros quadrados, também conhecido como RMSE (*Root Mean Squared Error*). Sua fórmula é dada por:
+<br>
+$$RMSE = \sqrt{\frac{\sum_{i=1}^{N} (\hat{y}_t - y_t)^2}{N}}$$
