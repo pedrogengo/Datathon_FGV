@@ -22,10 +22,9 @@ Em relação a modelagem, decidimos por utilizar desde modelos mais simples até
 - Support Vector Machines for Regression (SVR)
 - Moving Average
 - Linear Regression
-- Linear Regression with penalties (Ridge and Lasso)
 - Multi Layer Preceptron (MLP)
 - Recurrent Neural Networks with LSTM blocks
-- XGBoost
+- KNN (K-Nearest Neighbors)
 
 A ideia de trazer essa análise veio da leitura do artigo [Statistical and Machine Learning forecasting methods: Concerns and ways forward] e resolvemos agregar a questão da explicabilidade, pois sabemos que mais importante do que bons resultados, é entender a forma como nosso modelo realiza suas predições, a fim de encontrar bons insights, garantir a qualidade do processo e até mesmo refiná-lo.
 

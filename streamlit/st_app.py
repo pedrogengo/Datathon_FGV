@@ -37,6 +37,10 @@ st.set_option('deprecation.showfileUploaderEncoding', False)
 st.title('Cryptocurrency Forecast Analysis')
 st.markdown('Your dataset must have the following columns: ["open", "close", "high", "low"]')
 st.markdown('The index of your dataset must be a datetime.')
+st.markdown('Example of layout:')
+example = pd.DataFrame([['2017-08-17', '298', '300', '320', '290'], ['2017-08-18', '300', '302', '320', '290']], columns = ['open_time', 'open', 'close', 'high', 'low'])
+example = example.set_index('open_time')
+st.dataframe(example)
 
 # datetime_format = st.text_input('Put the datetime format of your dataset here', value='YY-MM-DD')
 time_frequency = st.radio("What's the frequency of your data?",
@@ -73,8 +77,9 @@ if crypto_file is not None:
         value=datetime.strptime(df.index[int(df.shape[0] * 0.7)], '%Y-%m-%d'),
         format='YYYY-MM-DD')
 
-    selected_model = st.selectbox('Select a model to use for forecast', ('SVR', 'Linear Regression', 'MLP', 'XGBoost', 'LSTM',
-                        'HoltWinters', 'Moving Average'))
+    # selected_model = st.selectbox('Select a model to use for forecast', ('SVR', 'Linear Regression', 'MLP', 'XGBoost', 'LSTM',
+    #                     'HoltWinters', 'Moving Average'))
+    selected_model = st.selectbox('Select a model to use for forecast', ('Linear Regression', 'MLP', 'Moving Average'))
 
     if selected_model == 'Linear Regression':
         lagged_features = st.number_input('How many lagged features do you want to use?', value = 1, step = 1)
@@ -91,6 +96,7 @@ if crypto_file is not None:
 
             reg = LinearRegression().fit(X_train, y_train)
             y_pred = reg.predict(X_test)
+            st.subheader('RMSE = ' + str(round(np.sqrt(mean_squared_error(df_test.close, y_pred)), 6)))
             fig = go.Figure(data = go.Scatter(x=X_test.index, y=y_test, mode='lines', name='real'))
             fig.add_trace(go.Scatter(x=X_test.index, y=y_pred, mode='lines', name='predicted'))
             st.plotly_chart(fig, use_container_width=True)
@@ -123,6 +129,7 @@ if crypto_file is not None:
                 forecast.append(model.predict(np.array(X_test[time])[np.newaxis]))
             results = np.array(forecast)[:, 0, 0]
             results = y_scaler.inverse_transform(list(results))
+            st.subheader('RMSE = ' + str(round(np.sqrt(mean_squared_error(df_test.close, y_pred)), 6)))
             fig = go.Figure(data = go.Scatter(x=df_test.index, y=df_test.iloc[lagged_features:].close, mode='lines', name='real'))
             fig.add_trace(go.Scatter(x=df_test.index, y=results, mode='lines', name='predicted'))
             st.plotly_chart(fig, use_container_width=True)
@@ -137,6 +144,7 @@ if crypto_file is not None:
             df_ma['lagged_sum'] = df[lagged_features_name].sum(axis=1)
             df_ma['y_pred'] = df_ma['lagged_sum']/(window_size-1)
             y_pred = list(df_ma['y_pred'])
+            st.subheader('RMSE = ' + str(round(np.sqrt(mean_squared_error(df_ma.close, y_pred)), 6)))
             fig = go.Figure(data = go.Scatter(x=df_ma.index, y=df_ma.close, mode='lines', name='real'))
             fig.add_trace(go.Scatter(x=df_ma.index, y=y_pred, mode='lines', name='predicted'))
             st.plotly_chart(fig, use_container_width=True)
